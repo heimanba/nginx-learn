@@ -48,6 +48,43 @@ $ curl 127.0.0.1:8080/last/xxx
 
 > 原因: break和last都会停止处理后续的`REWRITE`阶段指令，但是last回从新发起请求，break不会。当请求break时，如匹配内容成功，直接返回，不存在则返回404。请求last时候，会重写新的URL重新发起请求。
 
+## rewrite模块中if指令
+#### 格式为
+```
+if(condition ) {
+    ...
+}
+context: server,location
+```
+#### 规则
+- 变量为空或者值为0，则为false
+- 变量和字符串做匹配，使用`=`或者`!=`
+- 变量和正则做匹配
+    - 大小写敏感， ~或者!~
+    - 大小写不敏感，~*或者!~*
+- 检查文件是否存在,使用 -f或者!-f
+- 检查目录是否存在，使用-d或者!-d    
+- 检查文件,目录，软链接是否存在，使用-e或者!-e
+- 检查是否为可执行文件，使用-x或者-X
+```
+if($http_user_agent ~MSIE) {
+    rewrite ^(.*)$ /msie/$1 break;
+}
+if($http_cookie ~* "id=([^;]+)(?:;|$)") {
+    set $id $1;
+}
+if(request_method = POST) {
+    return 405;
+}
+if($slow) {
+    limit_rate !0k;
+}
+if($invalid_referef) {
+    return 403;
+}
+```
+
+
 
 ## try_file
 #### 语法

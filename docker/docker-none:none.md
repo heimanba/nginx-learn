@@ -9,3 +9,10 @@
 
 ## 清理dangling images
 1. 执行命令`docker image prune`即可删除`dangling images`
+2. `docker rmi $(docker images --filter "dangling=true" -q --no-trunc)`
+3. `docker system prune`有以下几个删除操作
+- 停止所有容器(`containers`)
+- 所有的`danling`镜像
+- 所有的`danling`构建的`cache`
+
+

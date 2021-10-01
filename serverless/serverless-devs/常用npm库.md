@@ -1,4 +1,6 @@
 ## UX交互相关
+#### ansi-escapes
+清除终端的`console.log`日志，排除一些杂乱的信息。
 #### boxen
 ![boxen](https://img.alicdn.com/imgextra/i3/O1CN01kK2eRx1bbGCRZ4onK_!!6000000003483-2-tps-2785-785.png)
 在终端中创建盒子，`一般用于结果类的展示`
@@ -361,3 +363,22 @@ envinfo.run(
 import {readPackageUpAsync} from 'read-pkg-up';
 console.log(await readPackageUpAsync());
 ```
+
+
+#### cli-truncate
+在cli的`terminal`截断字符串
+```
+cliTruncate('unicorn', 4);
+//=> 'uni…'
+// Truncate the paragraph to the terminal width
+const paragraph = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.';
+cliTruncate(paragraph, process.stdout.columns));
+//=> 'Lorem ipsum dolor sit amet, consectetuer adipiscing…'
+
+chalk.gray(cliTruncate(out, process.stdout.columns - 3))
+```
+
+#### figures
+在终端中显示字符样式
+![](https://img.alicdn.com/imgextra/i2/O1CN010koa0z1LFFJWLgd4e_!!6000000001269-2-tps-1458-158.png)
+

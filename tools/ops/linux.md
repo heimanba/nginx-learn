@@ -18,3 +18,9 @@ subject= /C=CN/ST=ZheJiang/L=HangZhou/O=Alibaba (China) Technology Co., Ltd./CN=
 
 2. ps aux VS ps -ef
 输出差别不大，只是展示风格不一致，aux是BSD风格，`-ef`是System V风格，另外是`aux`会截断command列，但是`-ef`不会，直接影响`grep`时候结果
+
+
+3. 查看挂载点信息
+```
+mount | grep nfs
+```
